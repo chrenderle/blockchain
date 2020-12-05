@@ -2,14 +2,20 @@ const product = artifacts.require("product");
 //const { time } = require("@openzeppelin/test-helpers");
 
 contract("product", (accounts) => {
-  const owner = accounts[0];
-  const bob = accounts[1];
-  const carol = accounts[2];
-  const daniel = accounts[3];
-  const eve = accounts[4];
+  const owner =     accounts[0];
+  const bob =       accounts[1];
+  const carol =     accounts[2];
+  const daniel =    accounts[3];
+  const eve =       accounts[4];
   const friedrich = accounts[5];
-  const gans = accounts[6];
-  const hans = accounts[7];
+  const gans =      accounts[6];
+  const hans =      accounts[7];
+  const paul =      accounts[8];
+  const jakob =     accounts[9];
+  const phil =      accounts[10];
+  const josh =      accounts[11];
+  const jay =       accounts[12];
+  const allesha =   accounts[13];
 
   let instance;
 
@@ -109,7 +115,7 @@ contract("product", (accounts) => {
     // pay the products
     await instance.pay.sendTransaction({from: paul, value: price});
     // check if the total open amount is 0
-    assert.equal(await instance.totalOpenBalance({from: eve}), 0);
+    assert.equal(await instance.totalOpenBalance({from: paul}), 0);
   })
 
   it("order two products, check balance and pay one", async () => {
@@ -126,11 +132,9 @@ contract("product", (accounts) => {
     // calculate the price for only one product
     var price = await instance.price() * 3;
     // pay only one product
-    await instance.pay.sendTransaction({from: paul, value: price});
-    // check if the total open amount is 0
-    assert.equal(await instance.totalOpenBalance({from: eve}), 0);
+    await instance.pay.sendTransaction({from: jakob, value: price});
     // check if the total open amount is 11
-    assert.equal(await instance.totalOpenBalance({from: eve}), 11);
+    assert.equal(await instance.totalOpenBalance({from: jakob}), 11);
   })
 
   it("two different people order product and two pay", async () => {
