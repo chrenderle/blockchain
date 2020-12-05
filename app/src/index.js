@@ -1,3 +1,4 @@
+/*
 import Web3 from "web3";
 import dhbwCoinArtifact from "../../build/contracts/DHBWCoin.json";
 
@@ -79,3 +80,4 @@ window.addEventListener("load", function () {
 
   App.start();
 });
+*/
