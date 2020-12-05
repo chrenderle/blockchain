@@ -1,6 +1,5 @@
-/*
 import Web3 from "web3";
-import dhbwCoinArtifact from "../../build/contracts/DHBWCoin.json";
+import product from "../../build/contracts/product.json";
 
 const App = {
   web3: null,
@@ -9,13 +8,16 @@ const App = {
 
   start: async function () {
     const { web3 } = this;
-
+    document.getElementById("price1").innerHTML = 500;
+    document.getElementById("price2").innerHTML = 200;
+    document.getElementById("price3").innerHTML = 100;
+    document.getElementById("balance").innerHTML = -100;
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = dhbwCoinArtifact.networks[networkId];
+      const deployedNetwork = product.networks[networkId];
       this.dhbw = new web3.eth.Contract(
-        dhbwCoinArtifact.abi,
+        product.abi,
         deployedNetwork.address
       );
 
@@ -30,6 +32,7 @@ const App = {
   },
 
   refreshBalance: async function () {
+    /*
     const { balanceOf, decimals } = this.dhbw.methods;
     const balance = await balanceOf(this.account).call();
     const decimal = await decimals().call();
@@ -40,9 +43,14 @@ const App = {
     )
       .toString()
       .padStart(2, "0")}`;
+    */
   },
 
-  order: async function () {
+  order: async function (productid) {
+    
+    //whatever should happen if somebody presses "Bestellen"
+
+    /*
     const amount = parseInt(document.getElementById("amount").value);
     const receiver = document.getElementById("receiver").value;
 
@@ -53,11 +61,14 @@ const App = {
 
     this.setStatus("Transaction complete!");
     this.refreshBalance();
+    */
   },
 
   setStatus: function (message) {
+    /*
     const status = document.getElementById("status");
     status.innerHTML = message;
+    */
   },
 };
 
@@ -80,4 +91,3 @@ window.addEventListener("load", function () {
 
   App.start();
 });
-*/

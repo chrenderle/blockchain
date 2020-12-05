@@ -1,28 +1,160 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hallo Smart Contract Shop</title>
+    <title>Smart Contract Shop</title>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+      }
+      
+      .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 20px;
+        font-size: 30px;
+      }
+      
+      .item1 {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+      }
+      
+      .item2 {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+      }
+
+      .item3 {
+        grid-column: 1 / span 2;
+        grid-row: 3;
+      }
+
+      .item4 {
+        grid-column: 1 / span 2;
+        grid-row: 4;
+      }
+      
+      .item5 {
+        grid-column: 3;
+        grid-row: 2 / span 3;
+      }
+
+      .item6 {
+        grid-column: 3;
+        grid-row: 1;
+      }
+      </style>
   </head>
   <body>
-    <h1>SHOP</h1>
-    <h1>Produkt 1</h1>
     
-    <label for="price">Preis:</label>
-    <input 
-      type="text"
-      id="price"
-      name="price"
-      value="20000"
-    /><br><br>
+    <div class="grid-container">
+      <div class="grid-item item1">
+        <h1>SHOP</h1>
+      </div>
 
-    <label for="amount">Amount:</label>
-    <input 
-      type="text"
-      id="amount"
-      placeholder="e.g. 95" 
-    /><br><br>
+      <div class="grid-item item2">
+        <h1>Produkt 1</h1>
+        <p>
+          <img alt="Bild von Produkt 1"  width="220" height="220">
+        </p>
+        <p>
+          <label>Preis:</label>
+        </p>
+        <p>
+          <label 
+            type="text"
+            id="price1"
+          ></label>
+        </p>
+        <label for="amount">Amount:</label>
+        <input 
+          type="text"
+          id="amount"
+          placeholder="e.g. 95" 
+        /><br><br>
+        <button onclick="App.order(0)">Bestellen</button>
+      </div>
 
-    <button onclick="App.order()">Bestellen</button>
+      <div class="grid-item item3">
+        <h1>Produkt 2</h1>
+        <p>
+          <img alt="Bild von Produkt 2"  width="220" height="220">
+        </p>
+        <p>
+          <label>Preis:</label>
+        </p>
+        <p>
+          <label 
+            type="text"
+            id="price2"
+          ></label>
+        </p>
+        <label for="amount">Amount:</label>
+        <input 
+          type="text"
+          id="amount"
+          placeholder="e.g. 95" 
+        /><br><br>
+        <button onclick="App.order(1)">Bestellen</button>
+      </div> 
+
+      <div class="grid-item item4">
+        <h1>Produkt 3</h1>
+        <p>
+          <img alt="Bild von Produkt 2"  width="220" height="220">
+        </p>
+        <p>
+          <label>Preis:</label>
+        </p>
+        <p>
+          <label 
+            type="text"
+            id="price3"
+          ></label>
+        </p>
+        <label for="amount">Amount:</label>
+        <input 
+          type="text"
+          id="amount"
+          placeholder="e.g. 95" 
+        /><br><br>
+        <button onclick="App.order(2)">Bestellen</button>
+      </div>
+
+      <div class="grid-item item5">
+        
+        <p>
+          <label>Balance:</label>
+        </p>
+        <p>
+          <label 
+            type="text"
+            id="balance"
+          ></label>
+        </p>
+
+        <label for="payable">Payable:</label>
+        <input 
+          type="text"
+          id="payable"
+          placeholder="e.g. 95" 
+        /><br><br>
+
+        <button onclick="App.pay()">Bezahlen</button>
+
+      </div>
+
+      <div class="grid-item item6">
+
+        <a href="./adminshop.html">
+          <button style="height:100%;width:100%">ADMIN</button>
+        </a>
+      </div>
+    </div>
+
     <script src="index.js"></script>
   </body>
 </html>
