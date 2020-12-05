@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DHBWCoin | Truffle Webpack Demo w/ Frontend</title>
+    <title>Smart Contract Shop</title>
   </head>
-  <style>
-    input {
-      display: block;
-      margin-bottom: 12px;
-    }
-  </style>
   <body>
-    <h1>DHBWCoin — Example Truffle Dapp</h1>
-    <p>You have <strong class="balance">loading...</strong> DHBW</p>
-
-    <h1>Send DHBWCoin</h1>
+    <h1>SHOP</h1>
+    <h1>Produkt 1</h1>
+    
+    <label for="price">Preis:</label>
+    <input 
+      type="text"
+      id="price"
+      name="price"
+      value="20000"
+    /><br><br>
 
     <label for="amount">Amount:</label>
-    <input type="text" id="amount" placeholder="e.g. 95" />
-
-    <label for="receiver">To address:</label>
-    <input
+    <input 
       type="text"
-      id="receiver"
-      placeholder="e.g. 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
-    />
+      id="amount"
+      placeholder="e.g. 95" 
+    /><br><br>
 
-    <button onclick="App.sendCoin()">Send DHBWCoin</button>
-
-    <p id="status"></p>
-    <p>
-      <strong>Hint:</strong> open the browser developer console to view any
-      errors and warnings.
-    </p>
+    <button onclick="App.order()">Bestellen</button>
     <script src="index.js"></script>
   </body>
 </html>

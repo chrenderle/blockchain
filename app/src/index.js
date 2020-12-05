@@ -1,4 +1,4 @@
-/*import Web3 from "web3";
+import Web3 from "web3";
 import dhbwCoinArtifact from "../../build/contracts/DHBWCoin.json";
 
 const App = {
@@ -41,7 +41,7 @@ const App = {
       .padStart(2, "0")}`;
   },
 
-  sendCoin: async function () {
+  order: async function () {
     const amount = parseInt(document.getElementById("amount").value);
     const receiver = document.getElementById("receiver").value;
 
@@ -78,4 +78,4 @@ window.addEventListener("load", function () {
   }
 
   App.start();
-});*/
+});
