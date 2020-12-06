@@ -209,7 +209,7 @@ contract product
             for (uint i2 = 0; i2 < purchases.length; i2++)
             {
                 // check if the customer missed the target
-                if (block.number - purchases[i2].block_number > 10)
+                if (block.number - purchases[i2].block_number > _payTime && purchases[i2].failed == false && purchases[i2].balance > 0)
                 {
                     purchase storage localPurchase = purchases[i2];
                     // customer missed the payment target
