@@ -56,9 +56,9 @@
       </div>
 
       <div class="grid-item item2">
-        <h1>Produkt 1</h1>
+        <h1>Produkt</h1>
         <p>
-          <img alt="Bild von Produkt 1"  width="220" height="220">
+          <img alt="Bild von Produkt"  width="220" height="220">
         </p>
         <p>
           <label>Preis:</label>
@@ -66,7 +66,7 @@
         <p>
           <label 
             type="text"
-            id="price1"
+            id="price"
           ></label>
         </p>
         <label for="amount">Amount:</label>
@@ -75,10 +75,10 @@
           id="amount"
           placeholder="e.g. 95" 
         /><br><br>
-        <button onclick="App.order(0)">Bestellen</button>
+        <button onclick="App.order()">Bestellen</button>
       </div>
 
-      <div class="grid-item item3">
+      <!--<div class="grid-item item3">
         <h1>Produkt 2</h1>
         <p>
           <img alt="Bild von Produkt 2"  width="220" height="220">
@@ -122,21 +122,20 @@
           placeholder="e.g. 95" 
         /><br><br>
         <button onclick="App.order(2)">Bestellen</button>
-      </div>
+      </div>-->
 
       <div class="grid-item item5">
         
         <p>
-          <label>Balance:</label>
+          <label>Product Token Balance:</label>
         </p>
+        <p id="balance"></p>
         <p>
-          <label 
-            type="text"
-            id="balance"
-          ></label>
+          <label>Total Open Amount:</label>
         </p>
+        <p id="totalOpenAmount"></p>
 
-        <label for="payable">Payable:</label>
+        <label for="payable">Pay:</label>
         <input 
           type="text"
           id="payable"
@@ -154,7 +153,10 @@
         </a>
       </div>
     </div>
-
+    <script>
+      var state = 0;
+    </script>
     <script src="index.js"></script>
+    
   </body>
 </html>

@@ -5,13 +5,20 @@ const App = {
   web3: null,
   account: null,
   dhbw: null,
+  price: null,
+  amount: null,
+  balance: null,
+  totalOpenAmount: null,
+  payable: null,
 
   start: async function () {
     const { web3 } = this;
-    document.getElementById("price1").innerHTML = 500;
-    document.getElementById("price2").innerHTML = 200;
-    document.getElementById("price3").innerHTML = 100;
-    document.getElementById("balance").innerHTML = -100;
+    // initialize html elements
+    this.price = document.getElementById("price");
+    this.amount = document.getElementById("amount");
+    this.balance = document.getElementById("balance");
+    this.totalOpenAmount = document.getElementById("totalOpenAmount");
+    this.payable = document.getElementById("payable");
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
@@ -23,33 +30,62 @@ const App = {
 
       // get accounts
       const accounts = await web3.eth.getAccounts();
-      this.account = accounts[0];
-
+      this.account = accounts[1];
+      //this.test();
+      this.refreshPrice();
       this.refreshBalance();
+      this.refreshTotalOpenAmount();
     } catch (error) {
       console.error("Could not connect to contract or chain.");
     }
+
+  },
+
+  start2: async function () {
+    const { web3 } = this;
+    try {
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = product.networks[networkId];
+      this.dhbw = new web3.eth.Contract(
+        product.abi,
+        deployedNetwork.address);
+
+      // get accounts
+      const accounts = await web3.eth.getAccounts();
+      this.account = accounts[0];
+    } catch (error)
+    {
+      console.error("Could not connect to contract or chain");
+    }
+  },
+
+  refreshPrice: async function () {
+    const { price } = this.dhbw.methods;
+    this.price.innerText = await price().call();
   },
 
   refreshBalance: async function () {
-    /*
-    const { balanceOf, decimals } = this.dhbw.methods;
-    const balance = await balanceOf(this.account).call();
-    const decimal = await decimals().call();
-
-    const balanceElement = document.getElementsByClassName("balance")[0];
-    balanceElement.innerHTML = `${balance / Math.pow(10, decimal)}.${(
-      balance % 100
-    )
-      .toString()
-      .padStart(2, "0")}`;
-    */
+    const { getBalance } = this.dhbw.methods;
+    var balance = await getBalance().call({from: this.account});
+    this.balance.innerText = balance;
   },
 
-  order: async function (productid) {
+  refreshTotalOpenAmount: async function () {
+    // refreshes the balance; the open payment targets
+    const { totalOpenBalance } = this.dhbw.methods;
+    var balance = await totalOpenBalance().call({from: this.account});
+    this.totalOpenAmount.innerText = balance;
+  },
+
+  order: async function () {
     
     //whatever should happen if somebody presses "Bestellen"
-
+    var amount = this.amount.value;
+    const { order } = this.dhbw.methods;
+    await order(amount).send({from: this.account, gas: 999999});
+    this.refreshTotalOpenAmount();
+    this.refreshBalance();
+    console.log("ordered " + amount);
     /*
     const amount = parseInt(document.getElementById("amount").value);
     const receiver = document.getElementById("receiver").value;
@@ -64,15 +100,33 @@ const App = {
     */
   },
 
+  pay: async function () {
+    var amount = this.payable.value;
+    const { pay } = this.dhbw.methods;
+    await pay().send({from: this.account, value: amount, gas: 999999});
+    this.refreshTotalOpenAmount();
+  },
+
   setStatus: function (message) {
     /*
     const status = document.getElementById("status");
     status.innerHTML = message;
     */
   },
+  test: async function () {
+    const { get, set } = this.dhbw.methods;
+    await set("test1234").send({from: this.account});
+    console.log(await get.call({from: this.account}));
+  },
+  checkPayments: async function() {
+      const { checkPayments } = this.dhbw.methods;
+      await checkPayments().send({from: this.account, gas: 999999});
+  }
 };
 
 window.App = App;
+
+
 
 window.addEventListener("load", function () {
   if (window.ethereum) {
@@ -89,5 +143,13 @@ window.addEventListener("load", function () {
     );
   }
 
-  App.start();
+  if (state == 0)
+  {
+    App.start();
+  }
+  else if (state == 1)
+  {
+    App.start2();
+  }
+  //App.start();
 });
