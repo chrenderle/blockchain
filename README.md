@@ -16,6 +16,6 @@
 6. Open a new terminal
 7. Run "yarn start"
 8. Open a new terminal
-9. Run "truffle migrate && cd app && yarn dev --host 0.0.0.0"
+9. Run "truffle migrate && cd app && npm install && yarn dev --host 0.0.0.0"
 
 You can now access the website at [http://localhost:8080](http://localhost:8080) or if the terminal says another port, this port.
