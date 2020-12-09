@@ -3,6 +3,10 @@
 [hier](documentation/Dokumentation.pdf)
 ## Präsentation
 [her](documentation/Präsentation.pdf)
+## Requirements
+- [Docker](https://www.docker.com/products/docker-desktop) (not Docker-Toolbox)
+- [Visual Studio Code](https://code.visualstudio.com/)
+  - Extension: [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 ## Installation
 1. Clone this repository
 2. Open directory in VS Code
